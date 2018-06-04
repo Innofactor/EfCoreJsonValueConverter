@@ -17,9 +17,9 @@ namespace Innofactor.EfCoreJsonValueConverter {
     public static void AddJsonFields(this ModelBuilder modelBuilder) {
 
       foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
-        foreach (var property in entityType.GetProperties()) {
+        foreach (var property in entityType.GetProperties().Where(p => p?.PropertyInfo != null)) {
           var attributes = property.PropertyInfo?.GetCustomAttributes(typeof(JsonFieldAttribute), false);
-          if (attributes != null && attributes.Any()) {
+          if (attributes.Any()) {
             var modelType = property.PropertyInfo.PropertyType;
             var converterType = typeof(JsonValueConverter<>).MakeGenericType(modelType);
             var converter = (ValueConverter)Activator.CreateInstance(converterType, new object[] { null });
