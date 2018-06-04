@@ -10,10 +10,15 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
   [TestClass]
   public class ModelBuilderExtensionsTests {
 
+    private readonly ModelBuilder modelBuilder;
+
+    public ModelBuilderExtensionsTests() {
+      modelBuilder = new ModelBuilder(new ConventionSet());
+    }
+
     [TestMethod]
     public void AddJsonFields() {
 
-      var modelBuilder = new ModelBuilder(new ConventionSet());
       modelBuilder.Entity<Customer>().Property(m => m.Address);
       modelBuilder.AddJsonFields();        
 
@@ -25,9 +30,27 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
 
     }
 
+    [TestMethod]
+    public void AddJsonFields_ShadowProperty() {
+
+      modelBuilder.Entity<CustomerWithPlainField>().Property<string>("Name").HasField("name");
+      modelBuilder.AddJsonFields();        
+
+      var model = modelBuilder.Model;
+      var modelType = model.FindEntityType(typeof(CustomerWithPlainField));
+      var modelProperty = modelType.FindProperty("Name");
+
+      Assert.IsNotNull(modelProperty, "Plain field was added");
+
+    }
+
     public class Customer {
       [JsonField]
       public Address Address { get; set; }
+    }
+
+    public class CustomerWithPlainField {
+      private string name;
     }
 
     public class Address {
