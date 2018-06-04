@@ -30,11 +30,20 @@ For DbContext:
 ```csharp
   protected override void OnModelCreating(ModelBuilder builder) {
 
-    base.OnModelCreating(builder);
-
-    builder.Entity<Customer>().Property(m => m.Address);
+    builder.Entity<Customer>()
+      .Property(m => m.Address);
     builder.AddJsonFields();        
     
   }
 ```
 
+Alternatively, individual fields can be mapped with the HasConversion method:
+```csharp
+  protected override void OnModelCreating(ModelBuilder builder) {
+
+    builder.Entity<Customer>()
+      .Property(m => m.Address)
+      .HasConversion(new JsonValueConverter<Address>());
+    
+  }
+```
