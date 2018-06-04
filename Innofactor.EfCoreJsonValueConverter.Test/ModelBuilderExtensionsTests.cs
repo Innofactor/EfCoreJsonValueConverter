@@ -11,23 +11,23 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
     public void AddJsonFields() {
 
       var modelBuilder = new ModelBuilder(new ConventionSet());
-      modelBuilder.Entity<Parent>().Property(m => m.Child);
+      modelBuilder.Entity<Customer>().Property(m => m.Address);
       modelBuilder.AddJsonFields();        
 
       var model = modelBuilder.Model;
-      var modelType = model.FindEntityType(typeof(Parent));
-      var modelProperty = modelType.FindProperty(nameof(Parent.Child));
+      var modelType = model.FindEntityType(typeof(Customer));
+      var modelProperty = modelType.FindProperty(nameof(Customer.Address));
 
-      Assert.IsInstanceOfType(modelProperty.GetValueConverter(), typeof(JsonValueConverter<Child>), "Value converter was applied");
+      Assert.IsInstanceOfType(modelProperty.GetValueConverter(), typeof(JsonValueConverter<Address>), "Value converter was applied");
 
     }
 
-    public class Parent {
+    public class Customer {
       [JsonField]
-      public Child Child { get; set; }
+      public Address Address { get; set; }
     }
 
-    public class Child {
+    public class Address {
       public int Id {get; set; }
     }
 
