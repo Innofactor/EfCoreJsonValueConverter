@@ -1,8 +1,15 @@
 ﻿# JSON value converter for Entity Framework Core 2.1+
 
+![status badge](https://innofactor-agile.visualstudio.com/_apis/public/build/definitions/8f49bcda-8276-4721-8f2e-aa1f54924edf/19/badge)
+
 Serializes object properties in database as JSON blobs using [Entity Framework Core value converter](https://docs.microsoft.com/en-us/ef/core/modeling/value-conversions).
 
 ## Usage example
+
+Installing:
+```
+PM> Install-Package Innofactor.EfCoreJsonValueConverter
+```
 
 Annotate model properties with the ```JsonField``` attribute:
 ```csharp
