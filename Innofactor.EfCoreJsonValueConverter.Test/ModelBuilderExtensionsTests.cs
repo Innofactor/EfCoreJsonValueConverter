@@ -4,6 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Innofactor.EfCoreJsonValueConverter.Test {
 
+  /// <summary>
+  /// Tests for <see cref="ModelBuilderExtensions"/>.
+  /// </summary>
   [TestClass]
   public class ModelBuilderExtensionsTests {
 

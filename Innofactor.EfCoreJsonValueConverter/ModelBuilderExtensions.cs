@@ -7,6 +7,13 @@ namespace Innofactor.EfCoreJsonValueConverter {
 
   public static class ModelBuilderExtensions {
 
+    /// <summary>
+    /// Add fields marked with <see cref="JsonFieldAttribute"/> to be converted using <see cref="JsonValueConverter{T}"/>.
+    /// </summary>
+    /// <param name="modelBuilder">Model builder instance. Cannot be null.</param>
+    /// <remarks>
+    /// Adapted from https://www.tabsoverspaces.com/233708-using-value-converter-for-custom-encryption-of-field-on-entity-framework-core-2-1
+    /// </remarks>
     public static void AddJsonFields(this ModelBuilder modelBuilder) {
 
       foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
