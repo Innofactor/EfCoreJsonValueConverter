@@ -1,4 +1,4 @@
-﻿# JSON value converter for Entity Framework Core 2.1x
+﻿# JSON value converter for Entity Framework Core 2.1+
 
 Serializes object properties in database as JSON blobs using [Entity Framework Core value converter](https://docs.microsoft.com/en-us/ef/core/modeling/value-conversions).
 
