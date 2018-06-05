@@ -9,6 +9,9 @@
     <PackageProjectUrl>https://github.com/Innofactor/EfCoreJsonValueConverter</PackageProjectUrl>
     <PackageIconUrl>http://rappen.net/Cinteros/innofactor.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/Innofactor/EfCoreJsonValueConverter</RepositoryUrl>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>signkey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
