@@ -5,3 +5,5 @@ Innofactor.EfCoreJsonValueConverter/bin/
 packages/
 Innofactor.EfCoreJsonValueConverter.Test/bin/
 Innofactor.EfCoreJsonValueConverter.Test/obj/
+Innofactor.EfCoreJsonValueConverter.Attributes/bin/
+Innofactor.EfCoreJsonValueConverter.Attributes/obj/

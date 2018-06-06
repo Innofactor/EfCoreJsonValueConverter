@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Innofactor</Authors>
+    <Product>Innofactor.EfCoreJsonValueConverter</Product>
+    <Description>JSON value converter attribute for Entity Framework Core 2.1+</Description>
+    <PackageLicenseUrl>https://github.com/Innofactor/EfCoreJsonValueConverter/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Innofactor/EfCoreJsonValueConverter</PackageProjectUrl>
+    <PackageIconUrl>http://rappen.net/Cinteros/innofactor.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Innofactor/EfCoreJsonValueConverter</RepositoryUrl>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>signkey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+</Project>

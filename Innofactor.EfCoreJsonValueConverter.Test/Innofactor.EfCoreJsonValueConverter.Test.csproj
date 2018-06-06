@@ -126,6 +126,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Innofactor.EfCoreJsonValueConverter.Attributes\Innofactor.EfCoreJsonValueConverter.Attributes.csproj">
+      <Project>{d761d1c3-f76e-4777-9bee-67c1e3402d9d}</Project>
+      <Name>Innofactor.EfCoreJsonValueConverter.Attributes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Innofactor.EfCoreJsonValueConverter\Innofactor.EfCoreJsonValueConverter.csproj">
       <Project>{df45f5fb-71a1-4b05-8928-a3fb75ae8f36}</Project>
       <Name>Innofactor.EfCoreJsonValueConverter</Name>
