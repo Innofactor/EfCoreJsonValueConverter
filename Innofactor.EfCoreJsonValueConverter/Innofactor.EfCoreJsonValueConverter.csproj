@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -19,12 +19,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Innofactor.EfCoreJsonValueConverter.Attributes" Version="1.13.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Innofactor.EfCoreJsonValueConverter.Attributes\Innofactor.EfCoreJsonValueConverter.Attributes.csproj" />
   </ItemGroup>
 
 </Project>
