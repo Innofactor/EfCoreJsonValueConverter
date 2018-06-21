@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace Innofactor.EfCoreJsonValueConverter {
 
+  /// <summary>
+  /// Extensions for <see cref="ModelBuilder"/>.
+  /// </summary>
   public static class ModelBuilderExtensions {
 
     /// <summary>
