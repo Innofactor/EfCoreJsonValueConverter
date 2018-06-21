@@ -19,6 +19,9 @@ namespace Innofactor.EfCoreJsonValueConverter {
     /// </remarks>
     public static void AddJsonFields(this ModelBuilder modelBuilder) {
 
+      if (modelBuilder == null)
+        throw new ArgumentNullException(nameof(modelBuilder));
+
       foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
         foreach (var property in entityType.GetProperties().Where(p => p?.PropertyInfo != null)) {
           var attributes = property.PropertyInfo?.GetCustomAttributes(typeof(JsonFieldAttribute), false);
