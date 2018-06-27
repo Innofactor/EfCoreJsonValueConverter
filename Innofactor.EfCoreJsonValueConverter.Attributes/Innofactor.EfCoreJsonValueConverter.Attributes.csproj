@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Innofactor</Authors>
     <Product>Innofactor.EfCoreJsonValueConverter</Product>
-    <Description>JSON value converter attribute for Entity Framework Core 2.1+</Description>
+    <Description>This package contains the JsonField attribute marking a property to be serialized into database as JSON. Does not contain direct reference to Entity Framework. This package is mostly useful for shared libraries. To be used together with the Innofactor.EfCoreJsonValueConverter package.</Description>
     <PackageLicenseUrl>https://github.com/Innofactor/EfCoreJsonValueConverter/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Innofactor/EfCoreJsonValueConverter</PackageProjectUrl>
     <PackageIconUrl>http://rappen.net/Cinteros/innofactor.png</PackageIconUrl>
