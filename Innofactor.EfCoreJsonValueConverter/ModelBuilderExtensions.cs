@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Innofactor.EfCoreJsonValueConverter {
   /// <summary>
   /// Extensions for <see cref="ModelBuilder"/>.
   /// </summary>
-  public static class ModelBuilderExtensions {
+  public static partial class ModelBuilderExtensions {
 
     /// <summary>
     /// Add fields marked with <see cref="JsonFieldAttribute"/> to be converted using <see cref="JsonValueConverter{T}"/>.
@@ -30,6 +31,8 @@ namespace Innofactor.EfCoreJsonValueConverter {
             var converterType = typeof(JsonValueConverter<>).MakeGenericType(modelType);
             var converter = (ValueConverter)Activator.CreateInstance(converterType, new object[] { null });
             property.SetValueConverter(converter);
+            var valueComparer = typeof(JsonValueComparer<>).MakeGenericType(modelType);
+            property.SetValueComparer((ValueComparer)Activator.CreateInstance(valueComparer, new object[0]));
           }
         }
       }
