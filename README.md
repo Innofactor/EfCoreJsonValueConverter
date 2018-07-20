@@ -37,13 +37,13 @@ For DbContext:
   }
 ```
 
-Alternatively, individual fields can be mapped with the HasConversion method:
+Alternatively, individual fields can be mapped with the SerializeAsJson method:
 ```csharp
   protected override void OnModelCreating(ModelBuilder builder) {
 
     builder.Entity<Customer>()
       .Property(m => m.Address)
-      .HasConversion(new JsonValueConverter<Address>());
+      .SerializeAsJson();
     
   }
 ```
