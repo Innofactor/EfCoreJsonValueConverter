@@ -11,7 +11,7 @@ namespace Innofactor.EfCoreJsonValueConverter {
     /// <summary>
     /// Serializes field as JSON blob in database.
     /// </summary>
-    public static PropertyBuilder<T> SerializeAsJson<T>(this PropertyBuilder<T> propertyBuilder) where T : class {
+    public static PropertyBuilder<T> HasJsonValueConversion<T>(this PropertyBuilder<T> propertyBuilder) where T : class {
 
       propertyBuilder
         .HasConversion(new JsonValueConverter<T>())

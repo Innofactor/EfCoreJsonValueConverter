@@ -144,8 +144,8 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
 
       protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.Entity<Customer>(c => {
-          c.Property(e => e.Address).SerializeAsJson();
-          c.Property(e => e.Address2).SerializeAsJson();
+          c.Property(e => e.Address).HasJsonValueConversion();
+          c.Property(e => e.Address2).HasJsonValueConversion();
         });
       }
     }
