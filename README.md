@@ -47,3 +47,17 @@ Alternatively, individual fields can be mapped with the HasJsonValueConversion m
     
   }
 ```
+
+## Note on performance
+
+EF Core requires that tracked objects implement deep cloning and comparison.
+This library includes default fallback implementations for cloning and comparing, 
+but for large objects that default implementation may be inefficient. 
+To improve performance, it is recommended to manually implement ICloneable and IEquatable<T> interfaces for complex
+JSON serialized objects. This library will then make use of those interfaces.
+
+```csharp
+public class Address : ICloneable, IEquatable<Address> {
+  // ...
+}
+```
