@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
+using Innofactor.EfCoreJsonValueConverter.Test.Components;
+using Innofactor.EfCoreJsonValueConverter.Test.Entities;
 
 namespace Innofactor.EfCoreJsonValueConverter.Test {
 
@@ -12,19 +12,19 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
   [TestClass]
   public class ModelBuilderExtensionsTests {
 
-    private readonly ModelBuilder modelBuilder;
+    private readonly ModelBuilder _modelBuilder;
 
     public ModelBuilderExtensionsTests() {
-      modelBuilder = new ModelBuilder(new ConventionSet());
+      _modelBuilder = new ModelBuilder(new ConventionSet());
     }
 
     [TestMethod]
     public void AddJsonFields() {
 
-      modelBuilder.Entity<Customer>().Property(m => m.Address);
-      modelBuilder.AddJsonFields();        
+      _modelBuilder.Entity<Customer>().Property(m => m.Address);
+      _modelBuilder.AddJsonFields();        
 
-      var model = modelBuilder.Model;
+      var model = _modelBuilder.Model;
       var modelType = model.FindEntityType(typeof(Customer));
       var modelProperty = modelType.FindProperty(nameof(Customer.Address));
 
@@ -35,10 +35,10 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
     [TestMethod]
     public void AddJsonFields_ShadowProperty() {
 
-      modelBuilder.Entity<CustomerWithPlainField>().Property<string>("Name").HasField("name");
-      modelBuilder.AddJsonFields();        
+      _modelBuilder.Entity<CustomerWithPlainField>().Property<string>("Name").HasField("name");
+      _modelBuilder.AddJsonFields();        
 
-      var model = modelBuilder.Model;
+      var model = _modelBuilder.Model;
       var modelType = model.FindEntityType(typeof(CustomerWithPlainField));
       var modelProperty = modelType.FindProperty("Name");
 
@@ -94,60 +94,6 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
 
       }
 
-    }
-
-    public class Customer {
-      public int Id { get; set; }
-      [JsonField]
-      public Address Address { get; set; }
-      [JsonField]
-      public AddressWithEquality Address2 { get; set; }
-    }
-
-    public class CustomerWithPlainField {
-      private string name;
-    }
-
-    public class Address {
-
-      public string Street { get; set; }
-
-      public override string ToString() => Street;
-
-    }
-
-    public class AddressWithEquality : IEquatable<AddressWithEquality>, ICloneable {
-
-      public string Street { get; set; }
-
-      public object Clone() {
-        return new AddressWithEquality { Street = Street };
-      }
-
-      public bool Equals(AddressWithEquality obj) => obj != null && Street == obj.Street;
-
-      public override int GetHashCode() {
-        return 294059534 + EqualityComparer<string>.Default.GetHashCode(Street);
-      }
-
-      public override string ToString() => Street;
-
-    }
-
-    public class TestDbContext : DbContext {
-      public DbSet<Customer> Customers { get; set; }
-
-      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-        base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseInMemoryDatabase("Test");
-      }
-
-      protected override void OnModelCreating(ModelBuilder modelBuilder) {
-        modelBuilder.Entity<Customer>(c => {
-          c.Property(e => e.Address).HasJsonValueConversion();
-          c.Property(e => e.Address2).HasJsonValueConversion();
-        });
-      }
     }
 
   }
