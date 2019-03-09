@@ -122,9 +122,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\TestableDbContext.cs" />
+    <Compile Include="Components\ObscureAddressJsonConverter.cs" />
+    <Compile Include="Components\TestDbContext.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Address.cs" />
+    <Compile Include="JsonConverterTests.cs" />
     <Compile Include="ModelBuilderExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

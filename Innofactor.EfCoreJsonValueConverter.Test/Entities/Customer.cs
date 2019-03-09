@@ -1,4 +1,7 @@
-﻿namespace Innofactor.EfCoreJsonValueConverter.Test.Entities
+﻿using Innofactor.EfCoreJsonValueConverter.Test.Components;
+using Newtonsoft.Json;
+
+namespace Innofactor.EfCoreJsonValueConverter.Test.Entities
 {
   public class Customer
   {
@@ -10,6 +13,9 @@
     [JsonField]
     public AddressWithEquality Address2 { get; set; }
 
+    [JsonField]
+    [JsonConverter(typeof(ObscureAddressJsonConverter))]
+    public Address ProtectedAddress { get; set; }
   }
 
   public class CustomerWithPlainField

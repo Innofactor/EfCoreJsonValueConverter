@@ -16,6 +16,7 @@ namespace Innofactor.EfCoreJsonValueConverter.Test.Components
       modelBuilder.Entity<Customer>(c => {
         c.Property(e => e.Address).HasJsonValueConversion();
         c.Property(e => e.Address2).HasJsonValueConversion();
+        c.Property(e => e.ProtectedAddress).HasJsonValueConversion();
       });
     }
   }
