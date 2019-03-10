@@ -33,6 +33,21 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
     }
 
     [TestMethod]
+    public void AddJsonFields_NavigationProperty() {
+
+      _modelBuilder.Entity<Customer>();
+      _modelBuilder.AddJsonFields();
+
+      var model = _modelBuilder.Model;
+      var modelType = model.FindEntityType(typeof(Customer));
+      var modelProperty = modelType.FindProperty(nameof(Customer.Address));
+
+      Assert.IsNotNull(modelProperty, "Navigation property was handled as entity property");
+      Assert.IsInstanceOfType(modelProperty.GetValueConverter(), typeof(JsonValueConverter<Address>), "Value converter was applied");
+
+    }
+
+    [TestMethod]
     public void AddJsonFields_ShadowProperty() {
 
       _modelBuilder.Entity<CustomerWithPlainField>().Property<string>("Name").HasField("name");

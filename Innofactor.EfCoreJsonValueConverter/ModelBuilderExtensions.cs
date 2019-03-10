@@ -13,8 +13,7 @@ namespace Innofactor.EfCoreJsonValueConverter {
   public static partial class ModelBuilderExtensions {
 
     private static bool HasJsonAttribute(PropertyInfo propertyInfo) {
-      var attributes = propertyInfo?.GetCustomAttributes(typeof(JsonFieldAttribute), false);
-      return attributes != null && attributes.Any();
+      return propertyInfo != null && propertyInfo.CustomAttributes.Any(a => a.AttributeType == typeof(JsonFieldAttribute));
     }
 
     /// <summary>
@@ -31,19 +30,19 @@ namespace Innofactor.EfCoreJsonValueConverter {
 
       foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
 
-        foreach (var property in entityType.GetProperties().Where(p => HasJsonAttribute(p.PropertyInfo))) {
-          var modelType = property.PropertyInfo.PropertyType;
+        foreach (var clrProperty in entityType.ClrType.GetProperties().Where(HasJsonAttribute)) {
+          var property = modelBuilder.Entity(entityType.ClrType).Property(clrProperty.PropertyType, clrProperty.Name);
+          var modelType = clrProperty.PropertyType;
+
           var converterType = typeof(JsonValueConverter<>).MakeGenericType(modelType);
           var converter = (ValueConverter)Activator.CreateInstance(converterType, new object[] { null });
-          property.SetValueConverter(converter);
+          property.Metadata.SetValueConverter(converter);
+
           var valueComparer = typeof(JsonValueComparer<>).MakeGenericType(modelType);
-          property.SetValueComparer((ValueComparer)Activator.CreateInstance(valueComparer, new object[0]));
+          property.Metadata.SetValueComparer((ValueComparer)Activator.CreateInstance(valueComparer, new object[0]));
         }
-
       }
-
     }
 
   }
-
 }
