@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 using System.Linq;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Innofactor.EfCoreJsonValueConverter {
 
   /// <summary>
   /// Extensions for <see cref="ModelBuilder"/>.
   /// </summary>
-  public static partial class ModelBuilderExtensions {
+  public static class ModelBuilderExtensions {
 
     private static bool HasJsonAttribute(PropertyInfo propertyInfo) {
       return propertyInfo != null && propertyInfo.CustomAttributes.Any(a => a.AttributeType == typeof(JsonFieldAttribute));
@@ -20,15 +21,25 @@ namespace Innofactor.EfCoreJsonValueConverter {
     /// Add fields marked with <see cref="JsonFieldAttribute"/> to be converted using <see cref="JsonValueConverter{T}"/>.
     /// </summary>
     /// <param name="modelBuilder">Model builder instance. Cannot be null.</param>
+    /// <param name="skipConventionalEntities">
+    ///   Skip trying to initialize properties for entity types found by EF conventions.
+    ///   EF conventions treats complex fields as possible entity types. This can easily cause issues if we are cross referencing types utilizing
+    ///   JsonAttribute while not registering them as actual entities in our db context.
+    /// </param>
     /// <remarks>
     /// Adapted from https://www.tabsoverspaces.com/233708-using-value-converter-for-custom-encryption-of-field-on-entity-framework-core-2-1
     /// </remarks>
-    public static void AddJsonFields(this ModelBuilder modelBuilder) {
+    public static void AddJsonFields(this ModelBuilder modelBuilder, bool skipConventionalEntities = true) {
 
       if (modelBuilder == null)
         throw new ArgumentNullException(nameof(modelBuilder));
 
       foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
+
+        if (skipConventionalEntities) {
+          var typeConfigurationSource = typeof(TypeBase).GetField("_configurationSource", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(entityType)?.ToString();
+          if (Enum.TryParse(typeConfigurationSource, out ConfigurationSource typeSource) && typeSource == ConfigurationSource.Convention) continue;
+        }
 
         foreach (var clrProperty in entityType.ClrType.GetProperties().Where(HasJsonAttribute)) {
           var property = modelBuilder.Entity(entityType.ClrType).Property(clrProperty.PropertyType, clrProperty.Name);
