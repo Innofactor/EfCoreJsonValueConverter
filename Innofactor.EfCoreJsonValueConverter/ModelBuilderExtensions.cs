@@ -5,6 +5,8 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace Innofactor.EfCoreJsonValueConverter {
 
@@ -36,12 +38,17 @@ namespace Innofactor.EfCoreJsonValueConverter {
 
       foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
 
+        var typeBase = typeof(TypeBase);
         if (skipConventionalEntities) {
-          var typeConfigurationSource = typeof(TypeBase).GetField("_configurationSource", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(entityType)?.ToString();
+          var typeConfigurationSource = typeBase.GetField("_configurationSource", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(entityType)?.ToString();
           if (Enum.TryParse(typeConfigurationSource, out ConfigurationSource typeSource) && typeSource == ConfigurationSource.Convention) continue;
         }
 
-        foreach (var clrProperty in entityType.ClrType.GetProperties().Where(HasJsonAttribute)) {
+        var ignoredMembers = typeBase.GetField("_ignoredMembers", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(entityType) as Dictionary<string, ConfigurationSource>;
+        bool NotIgnored(PropertyInfo property) =>
+          property != null && !ignoredMembers.ContainsKey(property.Name) && !property.CustomAttributes.Any(a => a.AttributeType == typeof(NotMappedAttribute));
+
+        foreach (var clrProperty in entityType.ClrType.GetProperties().Where(x => NotIgnored(x) && HasJsonAttribute(x))) {
           var property = modelBuilder.Entity(entityType.ClrType).Property(clrProperty.PropertyType, clrProperty.Name);
           var modelType = clrProperty.PropertyType;
 

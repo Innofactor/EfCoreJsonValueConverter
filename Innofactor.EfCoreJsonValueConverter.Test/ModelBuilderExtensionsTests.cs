@@ -84,6 +84,21 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
     }
 
     [TestMethod]
+    public void AddJsonFields_IgnoredProperties() {
+
+      _modelBuilder.Entity<Customer>().Ignore(c => c.Office);
+      _modelBuilder.AddJsonFields();
+
+      var model = _modelBuilder.Model;
+      var modelType = model.FindEntityType(typeof(Customer));
+      var ignoredByBuilder = modelType.FindProperty(nameof(Customer.Office));
+      var ignoredByAnnotation = modelType.FindProperty(nameof(Customer.OfficeNotMapped));
+
+      Assert.IsNull(ignoredByBuilder, "Property ignored via builder was not initialized");
+      Assert.IsNull(ignoredByAnnotation, "Property ignored via attribute was not initialized");
+    }
+
+    [TestMethod]
     public void DetectChanges_PlainObject() {
 
       using (var db  = new TestDbContext()) {
