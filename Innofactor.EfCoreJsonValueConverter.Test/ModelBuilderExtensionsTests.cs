@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Innofactor.EfCoreJsonValueConverter.Test.Components;
 using Innofactor.EfCoreJsonValueConverter.Test.Entities;
@@ -29,7 +28,6 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
       var modelProperty = modelType.FindProperty(nameof(Customer.Address));
 
       Assert.IsInstanceOfType(modelProperty.GetValueConverter(), typeof(JsonValueConverter<Address>), "Value converter was applied");
-
     }
 
     [TestMethod]
@@ -44,7 +42,6 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
 
       Assert.IsNotNull(modelProperty, "Navigation property was handled as entity property");
       Assert.IsInstanceOfType(modelProperty.GetValueConverter(), typeof(JsonValueConverter<Address>), "Value converter was applied");
-
     }
 
     [TestMethod]
@@ -58,7 +55,32 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
       var modelProperty = modelType.FindProperty("Name");
 
       Assert.IsNotNull(modelProperty, "Plain field was added");
+    }
 
+    [TestMethod]
+    public void AddJsonFields_SkipConventions() {
+
+      _modelBuilder.Entity<Customer>();
+      _modelBuilder.AddJsonFields();
+
+      var model = _modelBuilder.Model;
+      var modelType = model.FindEntityType(typeof(Office));
+      var modelProperty = modelType.FindProperty(nameof(Office.Address));
+
+      Assert.IsNull(modelProperty, "Office not explicitly registered as entity, don't initialize it's properties by convention");
+    }
+
+    [TestMethod]
+    public void AddJsonFields_IncludeConventions() {
+
+      _modelBuilder.Entity<Customer>();
+      _modelBuilder.AddJsonFields(skipConventionalEntities: false);
+
+      var model = _modelBuilder.Model;
+      var modelType = model.FindEntityType(typeof(Office));
+      var modelProperty = modelType.FindProperty(nameof(Office.Address));
+
+      Assert.IsNotNull(modelProperty, "Office was not explicitly registered as entity, go on and initialize properties by convention");
     }
 
     [TestMethod]
@@ -82,7 +104,6 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
 
         Assert.AreEqual(EntityState.Modified, db.Entry(customer).State, "Entity is marked as modified");
         Assert.IsTrue(db.Entry(customer).Property(m => m.Address).IsModified, "Property is marked as modified");
-
       }
     }
 
@@ -106,11 +127,8 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
 
         Assert.AreEqual(EntityState.Modified, db.Entry(customer).State, "Entity is marked as modified");
         Assert.IsTrue(db.Entry(customer).Property(m => m.Address2).IsModified, "Property is marked as modified");
-
       }
-
     }
 
   }
-
 }

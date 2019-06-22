@@ -17,6 +17,7 @@ namespace Innofactor.EfCoreJsonValueConverter.Test.Components
         c.Property(e => e.Address).HasJsonValueConversion();
         c.Property(e => e.Address2).HasJsonValueConversion();
         c.Property(e => e.ProtectedAddress).HasJsonValueConversion();
+        c.Ignore(e => e.Office);
       });
     }
   }

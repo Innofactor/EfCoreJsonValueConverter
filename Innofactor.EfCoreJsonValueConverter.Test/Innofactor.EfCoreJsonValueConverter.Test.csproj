@@ -127,6 +127,7 @@
     <Compile Include="Components\TestHelpers.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\Office.cs" />
     <Compile Include="JsonConverterTests.cs" />
     <Compile Include="ModelBuilderExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
