@@ -15,7 +15,7 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
     private readonly ModelBuilder _modelBuilder;
 
     public ModelBuilderExtensionsTests() {
-      _modelBuilder = new ModelBuilder(new ConventionSet());
+      _modelBuilder = new ModelBuilder(TestHelpers.GetDefaultConventions());
     }
 
     [TestMethod]

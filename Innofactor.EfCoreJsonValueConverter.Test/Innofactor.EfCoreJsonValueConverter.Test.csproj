@@ -124,6 +124,7 @@
   <ItemGroup>
     <Compile Include="Components\ObscureAddressJsonConverter.cs" />
     <Compile Include="Components\TestDbContext.cs" />
+    <Compile Include="Components\TestHelpers.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="JsonConverterTests.cs" />
