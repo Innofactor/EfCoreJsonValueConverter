@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Innofactor</Authors>
     <Company>Innofactor</Company>
-    <Description>JSON value converter for Entity Framework Core 2.1+</Description>
+    <Description>JSON value converter for Entity Framework Core 3.0+</Description>
     <PackageLicenseUrl>https://github.com/Innofactor/EfCoreJsonValueConverter/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Innofactor/EfCoreJsonValueConverter</PackageProjectUrl>
     <PackageIconUrl>http://rappen.net/Cinteros/innofactor.png</PackageIconUrl>
