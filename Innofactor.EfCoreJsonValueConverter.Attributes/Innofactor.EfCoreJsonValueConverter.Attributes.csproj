@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Innofactor</Authors>
     <Product>Innofactor.EfCoreJsonValueConverter</Product>
     <Description>This package contains the JsonField attribute marking a property to be serialized into database as JSON. Does not contain direct reference to Entity Framework. This package is mostly useful for shared libraries. To be used together with the Innofactor.EfCoreJsonValueConverter package.</Description>
