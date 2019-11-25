@@ -1,4 +1,4 @@
-﻿# JSON value converter for Entity Framework Core 2.1+
+﻿# JSON value converter for Entity Framework Core 3.0+
 
 ![status badge](https://innofactor-agile.visualstudio.com/_apis/public/build/definitions/8f49bcda-8276-4721-8f2e-aa1f54924edf/19/badge)
 
@@ -30,8 +30,7 @@ For DbContext:
 ```csharp
   protected override void OnModelCreating(ModelBuilder builder) {
 
-    builder.Entity<Customer>()
-      .Property(m => m.Address);
+    builder.Entity<Customer>();
     builder.AddJsonFields();        
     
   }
