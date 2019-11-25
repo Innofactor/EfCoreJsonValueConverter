@@ -7,6 +7,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Innofactor.EfCoreJsonValueConverter {
 

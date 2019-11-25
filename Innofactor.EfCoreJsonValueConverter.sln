@@ -1,18 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innofactor.EfCoreJsonValueConverter", "Innofactor.EfCoreJsonValueConverter\Innofactor.EfCoreJsonValueConverter.csproj", "{DF45F5FB-71A1-4B05-8928-A3FB75AE8F36}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innofactor.EfCoreJsonValueConverter.Test", "Innofactor.EfCoreJsonValueConverter.Test\Innofactor.EfCoreJsonValueConverter.Test.csproj", "{5548F701-2C10-4CC3-AE17-900691F325A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08A40C82-BBD4-4D3E-81D4-66CC6CEB1AF8}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innofactor.EfCoreJsonValueConverter.Attributes", "Innofactor.EfCoreJsonValueConverter.Attributes\Innofactor.EfCoreJsonValueConverter.Attributes.csproj", "{D761D1C3-F76E-4777-9BEE-67C1E3402D9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innofactor.EfCoreJsonValueConverter.Attributes", "Innofactor.EfCoreJsonValueConverter.Attributes\Innofactor.EfCoreJsonValueConverter.Attributes.csproj", "{D761D1C3-F76E-4777-9BEE-67C1E3402D9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innofactor.EfCoreJsonValueConverter.Test", "Innofactor.EfCoreJsonValueConverter.Test\Innofactor.EfCoreJsonValueConverter.Test.csproj", "{4DF408F8-38CF-4BDB-B860-DA367AC0EDF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,14 +24,14 @@ Global
 		{DF45F5FB-71A1-4B05-8928-A3FB75AE8F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF45F5FB-71A1-4B05-8928-A3FB75AE8F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF45F5FB-71A1-4B05-8928-A3FB75AE8F36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5548F701-2C10-4CC3-AE17-900691F325A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5548F701-2C10-4CC3-AE17-900691F325A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5548F701-2C10-4CC3-AE17-900691F325A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5548F701-2C10-4CC3-AE17-900691F325A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D761D1C3-F76E-4777-9BEE-67C1E3402D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D761D1C3-F76E-4777-9BEE-67C1E3402D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D761D1C3-F76E-4777-9BEE-67C1E3402D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D761D1C3-F76E-4777-9BEE-67C1E3402D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF408F8-38CF-4BDB-B860-DA367AC0EDF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF408F8-38CF-4BDB-B860-DA367AC0EDF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF408F8-38CF-4BDB-B860-DA367AC0EDF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF408F8-38CF-4BDB-B860-DA367AC0EDF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

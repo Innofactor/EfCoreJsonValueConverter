@@ -28,6 +28,7 @@ namespace Innofactor.EfCoreJsonValueConverter.Test.Entities
 
   public class CustomerWithPlainField
   {
-    private string name;
+    private string _name;
+    public string Name { get; set; }
   }
 }

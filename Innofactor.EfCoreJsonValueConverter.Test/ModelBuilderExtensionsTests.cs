@@ -47,7 +47,7 @@ namespace Innofactor.EfCoreJsonValueConverter.Test {
     [TestMethod]
     public void AddJsonFields_ShadowProperty() {
 
-      _modelBuilder.Entity<CustomerWithPlainField>().Property<string>("Name").HasField("name");
+      _modelBuilder.Entity<CustomerWithPlainField>().Property(p => p.Name).HasField("_name");
       _modelBuilder.AddJsonFields();        
 
       var model = _modelBuilder.Model;
