@@ -41,10 +41,17 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0.9
 
       - name: GitVersion Output
-        run: echo "NuGetVersionV2:${{ steps.gitversion.outputs.nuGetVersionV2 }}"
+        run: echo "NuGetVersion:${{ steps.gitversion.outputs.nuGetVersion }}"
           
       - name: Create packages
-        run: dotnet pack -p:PackageVersion=${{steps.gitversion.outputs.nuGetVersionV2}}
+        run: dotnet pack -o ./ -p:PackageVersion=${{steps.gitversion.outputs.nuGetVersion}}
         
       - name: Check directory
         run: ls
+
+      - name: Publish NuGet
+        run: dotnet nuget push **/*.nupkg 
+          --api-key ${{ secrets.NUGET_API_KEY }}
+          --source https://api.nuget.org/v3/index.json
+          --no-symbols true
+        
