@@ -1,6 +1,6 @@
 ﻿# JSON value converter for Entity Framework Core 3.0+
 
-![status badge](https://innofactor-agile.visualstudio.com/_apis/public/build/definitions/8f49bcda-8276-4721-8f2e-aa1f54924edf/19/badge)
+![Publish NuGet](https://github.com/Innofactor/EfCoreJsonValueConverter/workflows/Publish%20NuGet/badge.svg)
 
 Serializes object properties in database as JSON blobs using [Entity Framework Core value converters](https://docs.microsoft.com/en-us/ef/core/modeling/value-conversions).
 

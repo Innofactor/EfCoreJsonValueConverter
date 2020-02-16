@@ -7,12 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innofactor.EfCoreJsonValueC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08A40C82-BBD4-4D3E-81D4-66CC6CEB1AF8}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\buildconfig.yml = .github\workflows\buildconfig.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innofactor.EfCoreJsonValueConverter.Attributes", "Innofactor.EfCoreJsonValueConverter.Attributes\Innofactor.EfCoreJsonValueConverter.Attributes.csproj", "{D761D1C3-F76E-4777-9BEE-67C1E3402D9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innofactor.EfCoreJsonValueConverter.Test", "Innofactor.EfCoreJsonValueConverter.Test\Innofactor.EfCoreJsonValueConverter.Test.csproj", "{4DF408F8-38CF-4BDB-B860-DA367AC0EDF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innofactor.EfCoreJsonValueConverter.Test", "Innofactor.EfCoreJsonValueConverter.Test\Innofactor.EfCoreJsonValueConverter.Test.csproj", "{4DF408F8-38CF-4BDB-B860-DA367AC0EDF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
