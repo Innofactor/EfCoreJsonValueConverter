@@ -1,0 +1,50 @@
+name: NuGet Package CI
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+        
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+      
+    - name: Run unit tests
+      run: dotnet test
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Fetch git tags history
+        run: git fetch --prune --unshallow
+      
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9
+        with:
+          versionSpec: '5.1.x'
+
+      - name: Use GitVersion
+        id: gitversion # step id used as reference for output values
+        uses: gittools/actions/gitversion/execute@v0.9
+
+      - name: GitVersion Output
+        run: echo "NuGetVersionV2:${{ steps.gitversion.outputs.nuGetVersionV2 }}"
+          
+      - name: Create packages
+        run: dotnet pack -p:PackageVersion=${{steps.gitversion.outputs.nuGetVersionV2}}
+        
+      - name: Check directory
+        run: ls
