@@ -43,8 +43,8 @@ jobs:
       - name: GitVersion Output
         run: echo "NuGetVersion:${{ steps.gitversion.outputs.nuGetVersion }}"
           
-      - name: Create packages
-        run: dotnet pack -o ./ -p:PackageVersion=${{steps.gitversion.outputs.nuGetVersion}}
+      - name: Create package for value converter # leave attributes out of automation, publish excplicitly if needed
+        run: dotnet pack Innofactor.EfCoreJsonValueConverter/Innofactor.EfCoreJsonValueConverter.csproj -o ./ -p:PackageVersion=${{steps.gitversion.outputs.nuGetVersion}}
         
       - name: Check directory
         run: ls
