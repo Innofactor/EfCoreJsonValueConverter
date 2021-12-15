@@ -43,6 +43,11 @@ jobs:
       - name: GitVersion Output
         run: echo "NuGetVersion:${{ steps.gitversion.outputs.nuGetVersion }}"
           
+      - name: Setup .NET 6.0
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0'
+      
       - name: Create package for value converter # leave attributes out of automation, publish excplicitly if needed
         run: dotnet pack Innofactor.EfCoreJsonValueConverter/Innofactor.EfCoreJsonValueConverter.csproj -o ./ -p:PackageVersion=${{steps.gitversion.outputs.nuGetVersion}}
         
