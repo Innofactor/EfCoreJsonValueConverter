@@ -17,7 +17,7 @@ namespace Innofactor.EfCoreJsonValueConverter {
   internal class JsonValueComparer<T> : ValueComparer<T> {
 
     private static string Json(T instance) {
-      return JsonSerializer.Serialize(instance);
+      return JsonSerializer.Serialize(instance, EfCoreJsonValueConverterConfiguration.DefaultJsonSerializerOptions);
     }
 
     private static T DoGetSnapshot(T instance) {
@@ -25,7 +25,7 @@ namespace Innofactor.EfCoreJsonValueConverter {
       if (instance is ICloneable cloneable)
         return (T)cloneable.Clone();
 
-      var result = JsonSerializer.Deserialize<T>(Json(instance));
+      var result = JsonSerializer.Deserialize<T>(Json(instance), EfCoreJsonValueConverterConfiguration.DefaultJsonSerializerOptions);
       return result;
 
     }
