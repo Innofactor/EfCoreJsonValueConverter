@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Newtonsoft.Json;
 using System;
+using System.Text.Json;
 
 namespace Innofactor.EfCoreJsonValueConverter {
 
@@ -17,7 +17,7 @@ namespace Innofactor.EfCoreJsonValueConverter {
   internal class JsonValueComparer<T> : ValueComparer<T> {
 
     private static string Json(T instance) {
-      return JsonConvert.SerializeObject(instance);
+      return JsonSerializer.Serialize(instance);
     }
 
     private static T DoGetSnapshot(T instance) {
@@ -25,7 +25,7 @@ namespace Innofactor.EfCoreJsonValueConverter {
       if (instance is ICloneable cloneable)
         return (T)cloneable.Clone();
 
-      var result = (T)JsonConvert.DeserializeObject(Json(instance), typeof(T));
+      var result = JsonSerializer.Deserialize<T>(Json(instance));
       return result;
 
     }

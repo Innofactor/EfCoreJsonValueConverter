@@ -47,6 +47,10 @@ Alternatively, individual fields can be mapped with the HasJsonValueConversion m
   }
 ```
 
+## Configuring JsonSerializer
+
+The `EfCoreJsonValueConverterConfiguration.DefaultJsonSerializerOptions` object can be used to modify the serialization, such as adding custom converters.  It defaults to using strings for enums and can be configured to support polymorphism by amending the Converters property.
+
 ## Note on performance
 
 EF Core requires that tracked objects implement deep cloning and comparison.
